@@ -1,59 +1,35 @@
-      // Live date & time (updates every second, blinking separators in CSS)
-      const clockDate = document.getElementById("clockDate");
-      const clockHour = document.getElementById("clockHour");
-      const clockMin = document.getElementById("clockMin");
-      const clockSec = document.getElementById("clockSec");
+// Clock update
+function updateClock() {
+  const now = new Date();
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-      function updateClock() {
-        const now = new Date();
-        if (clockDate) {
-          clockDate.textContent = now.toLocaleDateString("en-US", {
-            weekday: "short",
-            month: "short",
-            day: "numeric",
-          });
-        }
-        const pad = (n) => String(n).padStart(2, "0");
-        if (clockHour) clockHour.textContent = pad(now.getHours());
-        if (clockMin) clockMin.textContent = pad(now.getMinutes());
-        if (clockSec) clockSec.textContent = pad(now.getSeconds());
-      }
-      updateClock();
-      setInterval(updateClock, 1000);
+  const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+  const h = String(now.getHours()).padStart(2, "0");
+  const m = String(now.getMinutes()).padStart(2, "0");
+  const s = String(now.getSeconds()).padStart(2, "0");
 
-      // Footer year
-      const footerYear = document.getElementById("footerYear");
-      if (footerYear) footerYear.textContent = new Date().getFullYear();
+  document.getElementById("clockDate").textContent = dateStr;
+  document.getElementById("clockHour").textContent = h;
+  document.getElementById("clockMin").textContent = m;
+  document.getElementById("clockSec").textContent = s;
+}
+updateClock();
+setInterval(updateClock, 1000);
 
-      // Contact form simulation
-      const form = document.getElementById("contactForm");
-      const feedback = document.getElementById("formFeedback");
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const name = document.getElementById("name").value.trim();
-          const message = document.getElementById("message").value.trim();
-          if (!name || !message) {
-            feedback.style.color = "#f2c94c";
-            feedback.textContent = "> please fill in both fields.";
-            return;
-          }
-          feedback.style.color = "#6fcf97";
-          feedback.textContent = `> thanks, ${name}! your message was sent (simulated).`;
-          form.reset();
-          setTimeout(() => (feedback.textContent = ""), 4000);
-        });
-      }
-
-      // Terminal-style log on project card click
-      document.querySelectorAll(".project-card").forEach((card) => {
-        card.addEventListener("click", (e) => {
-          if (e.target.tagName === "A") return;
-          const title =
-            card.querySelector(".project-title")?.innerText || "project";
-          console.log(
-            `%c> cat ~/projects/${title.toLowerCase().replace(/\s/g, "_")}.md`,
-            "color: #7ab7ff; font-family: monospace;",
-          );
-        });
-      });
+// Footer year
+document.getElementById("footerYear").textContent =
+  new Date().getFullYear();
