@@ -5,6 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SR Tusher · software developer</title>
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* ============================================
+   PROFILE WRAP — with Download CV button
+   ============================================ */
+      .profile-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .profile-img {
+        /* (keep your existing styles for the image) */
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent2, #22d3ee);
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.25);
+      }
+
+      /* Download CV button */
+      .download-cv-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.55rem 1.2rem;
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        color: var(--accent2, #22d3ee);
+        background: transparent;
+        border: 1px solid var(--accent2, #22d3ee);
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      /* Icon inside the button */
+      .download-cv-btn .icon {
+        font-size: 0.95rem;
+        line-height: 1;
+        transition: transform 0.25s ease;
+      }
+
+      /* Hover state */
+      .download-cv-btn:hover {
+        color: #0b0e12;
+        background: var(--accent2, #22d3ee);
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.55);
+        transform: translateY(-2px);
+      }
+
+      .download-cv-btn:hover .icon {
+        transform: translateY(2px);
+      }
+
+      /* Active / click state */
+      .download-cv-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+      }
+
+      /* Focus (keyboard accessibility) */
+      .download-cv-btn:focus-visible {
+        outline: 2px dashed var(--accent2, #22d3ee);
+        outline-offset: 3px;
+      }
+
+      /* Optional: subtle shine sweep on hover */
+      .download-cv-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+      }
+
+      .download-cv-btn:hover::before {
+        left: 125%;
+      }
+
+      /* ============================================
+   RESPONSIVE — smaller screens
+   ============================================ */
+      @media (max-width: 600px) {
+        .profile-img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .download-cv-btn {
+          font-size: 0.72rem;
+          padding: 0.5rem 1rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="terminal">
@@ -85,6 +197,15 @@
                 src="img/1612375969479.jpg"
                 alt="SR Tusher profile photo"
               />
+              <!-- Download CV button added below profile image -->
+              <a
+                class="download-cv-btn"
+                target="_blank"
+                href="https://drive.google.com/file/d/1FRmAyD6ou-Fn1tQDvmyMwlpiw_BCJJQi/view?usp=sharing"
+                download="SR_Tusher_CV.pdf"
+              >
+                <span class="icon">📄</span> Download CV
+              </a>
             </div>
           </div>
 
